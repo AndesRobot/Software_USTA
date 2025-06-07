@@ -1,11 +1,12 @@
 ***
 
 ## AndesRobot 
-* _**Universidad Nacional Andrés Bello - Chile**_ ![Chile Flag]( https://cdn.countryflags.com/thumbs/chile/flag-waving-250.png)
+* _**Universidad Nacional Andrés Bello - Chile**_ ![Chile Flag](/admin_repo/images/FlagChile.png)
 https://www.unab.cl/
  
 
-* _**Universidad Santo Tomás - Colombia**_ https://usantotomas.edu.co/inicio
+* _**Universidad Santo Tomás - Colombia**_ ![Colombia Flag]()(/admin_repo/images/FlagColombia.png)
+* https://usantotomas.edu.co/inicio
 
 ***
 

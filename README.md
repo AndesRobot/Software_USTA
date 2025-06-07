@@ -5,7 +5,7 @@
 https://www.unab.cl/
  
 
-* _**Universidad Santo Tomás - Colombia**_ ![Colombia Flag]()(/admin_repo/images/FlagColombia.png)
+* _**Universidad Santo Tomás - Colombia**_ ![Colombia Flag](/admin_repo/images/FlagColombia.png)
 * https://usantotomas.edu.co/inicio
 
 ***

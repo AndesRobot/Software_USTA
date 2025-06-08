@@ -1,85 +1,57 @@
--------FMS_Help me carry----------
+# Simulación de Máquinas de Estado – RoboCup@Home
 
-El estado Q1 debe imprimir identificando persona
-La transición a es la tecla a
+Este repositorio contiene la simulación de máquinas de estado finito (FSM) para los retos de la liga RoboCup@Home, utilizando Python 3.13 como lenguaje base para emular el comportamiento de un robot de servicio. Cada FSM representa una tarea específica que el robot debe ejecutar durante la competencia.
 
-El estado Q2 debe imprimir persona identificada
-La transición b es la tecla b
+---
 
-El estado Q3 debe imprimir persona camina
-La transición c es la tecla c
+## 🧠 FSM – Help Me Carry
 
-El estado Q4 debe imprimir persona se detiene
-La transición d es la tecla d
+Este reto simula la asistencia del robot para llevar una bolsa desde un vehículo hasta una ubicación de inicio, sorteando obstáculos y siguiendo instrucciones humanas. A continuación se describen los estados y sus respectivas transiciones:
 
-El estado Q5 debe imprimir se recibe indicación
-La transición  e es la tecla e
+### Estados y Transiciones
 
-El estado Q6 debe imprimir identificar bolsa
-La transición  f es la tecla f
+- **Q1** → `Identificando persona` (tecla `a`)
+- **Q2** → `Persona identificada` (tecla `b`)
+- **Q3** → `Persona camina` (tecla `c`)
+- **Q4** → `Persona se detiene` (tecla `d`)
+- **Q5** → `Se recibe indicación` (tecla `e`)
+- **Q6** → `Identificar bolsa` (tecla `f`)
+- **Q7** → `Recoger bolsa` (tecla `g`)
+- **Q8** → `Regresar con bolsa` (tecla `h`)
+- **Q9** → `Se detecta obstáculos` (tecla `i`)
+- **Q10** → `Se evitan obstáculos` (tecla `j`)
+- **Q11** → `Se detecta cosas pequeñas` (tecla `k`)
+- **Q12** → `Entregar bolsa` (tecla `l`)
+- **Q13** → `Regresando al estado inicial` (tecla `m`)
 
-El estado Q7 debe imprimir recoger bolsa
-La transición  g es la tecla g
+#### Transiciones adicionales:
+`n`, `o`, `p`, `q`, `r`, `s`, `t`, `u`, `v`, `w`, `x`
 
-El estado Q8 debe imprimir regresar con bolsa
-La transición  h es la tecla h
- 
-El estado Q9 debe imprimir se detecta obstáculos
-La transición  i es la tecla i
+### Diagrama FSM
 
-El estado Q10 debe imprimir se evitan obstáculos
-La transición  j es la tecla j
+![FSM_HelpMeCarry](FMS_Help me carry)
 
-El estado Q11 debe imprimir se detecta cosas pequeñas
-La transición  k es la tecla k
+---
 
-El estado Q12 debe imprimir entregar bolsa
-La transición  l es la tecla l
+## 🤖 FSM – General Purpose Service Robot
 
-El estado Q13 debe imprimir regresando al estado inicial
-La transición m es la tecla m
+Este reto representa un robot multifuncional que puede ejecutar diferentes órdenes emitidas por un operador humano, desde reconocer obstáculos hasta entregar objetos y regresar al punto de instrucción.
 
-La transición n es la tecla n
-La transición o es la tecla o
-La transición p es la tecla p
-La transición q es la tecla q
-La transición r es la tecla r
-La transición s es la tecla s
-La transición t es la tecla t
-La transición u es la tecla u
-La transición v es la tecla v
-La transición w es la tecla w
-La transición x es la tecla x
+### Estados y Transiciones
 
--------------FMS_General_purpose_service_robot-----------------
+- **Q1** → `Se detecta obstáculo` (tecla `a` o `b`)
+- **Q2** → `No se detecta obstáculo` (tecla `c` o `d`)
+- **Q3** → `Quieto` (tecla `e` o `f`)
+- **Q4** → `Se recibe orden` (tecla `g` o `h`)
+- **Q5** → `Ejecutando orden` (tecla `i` o `z`)
+- **Q6** → `Finalizando orden` (tecla `j` o `z`)
+- **Q7** → `Punto de instrucción` (tecla `k`, `l` o `z`)
 
-El estado Q1 debe imprimir Se detecta obstáculo
-La transición a es la tecla a
-La transición b es la tecla b
+### Diagrama FSM
 
-El estado Q2 debe imprimir No se detecta obstáculo
-La transición c es la tecla c
-La transición d es la tecla d
+![FSM_GeneralPurpose](FMS_Help me carry.jpg)
 
-El estado Q3 debe imprimir Quieto
-La transición e es la tecla e
-La transición f es la tecla f
+---
 
-El estado Q4 debe imprimir Se recibe orden
-La transición h es la tecla h
-La transición g es la tecla g
+## 🗂 Estructura del Proyecto
 
-El estado Q5 debe imprimir Ejecutando orden
-La transición i es la tecla i
-La transición z es la tecla z
-
-
-El estado Q6 debe imprimir Finalizando orden
-La transición j es la tecla j
-La transición z es la tecla z
-
-
-El estado Q7 debe imprimir punto de instrucción
-La transición k es la tecla k
-La transición l es la tecla l
-La transición z es la tecla z

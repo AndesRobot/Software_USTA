@@ -1,0 +1,176 @@
+# Máquina de estados basada en generadores (estilo FSM simulada con teclas)
+
+def q1():
+    print("Q1: Identificando persona")
+    while True:
+        char = yield
+        if char == 'a':
+            yield from q1()
+        elif char == 'b':
+            yield from q2()
+        elif char == 'z':
+            yield from q9()
+        else:
+            break
+
+def q2():
+    print("Q2: Persona identificada")
+    while True:
+        char = yield
+        if char == 'c':
+            yield from q1()
+        elif char == 'd':
+            yield from q3()
+        elif char == 'e':
+            yield from q4()
+        elif char == 'z':
+            yield from q9()
+        else:
+            break
+
+def q3():
+    print("Q3: Persona camina")
+    while True:
+        char = yield
+        if char == 'f':
+            yield from q3()
+        elif char == 'g':
+            yield from q4()
+        elif char == 'z':
+            yield from q9()
+
+        else:
+            break
+
+def q4():
+    print("Q4: Persona se detiene")
+    while True:
+        char = yield
+        if char == 'i':
+            yield from q5()
+        elif char == 'h':
+            yield from q3()
+        elif char == 'z':
+            yield from q9()
+        else:
+            break
+
+def q5():
+    print("Q5: Se recibe indicación")
+    while True:
+        char = yield
+        if char == 'j':
+            yield from q3()
+        if char == 'k':
+            yield from q6()
+        elif char == 'z':
+            yield from q9()
+        else:
+            break
+
+def q6():
+    print("Q6: Identificar bolsa")
+    while True:
+        char = yield
+        if char == 'l':
+            yield from q7()
+        elif char == 'z':
+            yield from q9()
+        else:
+            break
+
+def q7():
+    print("Q7: Recoger bolsa")
+    while True:
+        char = yield
+        if char == 'm':
+            yield from q8()
+        elif char == 'z':
+            yield from q9()
+        else:
+            break
+
+def q8():
+    print("Q8: Regresar con bolsa")
+    while True:
+        char = yield
+        if char == 'n':
+            yield from q12()
+        elif char == 'z':
+            yield from q9()
+        else:
+            break
+
+def q9():
+    print("Q9: Se detecta obstáculos")
+    while True:
+        char = yield
+        if char == 'o':
+            yield from q1()
+        elif char == 'p':
+            yield from q10()
+        else:
+            break
+
+def q10():
+    print("Q10: Se evitan obstáculos")
+    while True:
+        char = yield
+        if char == 'q':
+            yield from q9()
+        elif char == 'r':
+            yield from q10()
+        elif char == 's':
+            yield from q11()
+
+        else:
+            break
+
+def q11():
+    print("Q11: Se detecta cosas pequeñas")
+    while True:
+        char = yield
+        if char == 't':
+            yield from q1()
+        elif char == 'w':
+            yield from q11()
+        elif char == 'v':
+            yield from q10()
+        else:
+            break
+
+def q12():
+    print("Q12: Entregar bolsa")
+    while True:
+        char = yield
+        if char == 'x':
+            yield from q13()
+        else:
+            break
+
+def q13():
+    print("Q13: Regresando al estado inicial")
+    while True:
+        char = yield
+        if char == 'a':
+            yield from q1()
+        else:
+            break
+
+# Simulador FSM
+def fsm():
+    state = q1()
+    next(state)
+    while True:
+        try:
+            char = input("Presiona una tecla (a-x) o 'exit' para salir: ").lower()
+            if char == 'exit':
+                break
+            state.send(char)
+        except StopIteration:
+            print("Estado no válido o final alcanzado.")
+            break
+
+# Llamar desde VS Code
+if __name__ == "__main__":
+    fsm()

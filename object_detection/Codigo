@@ -1,0 +1,53 @@
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge
+from ultralytics import YOLO
+import cv2
+
+class YOLODetector(Node):
+    def __init__(self):
+        super().__init__('yolo_detector_node')
+
+        self.bridge = CvBridge()
+
+        self.model = YOLO(".../train/weights/best.pt")  # Ruta a modelo entrenado
+
+        self.timer = self.create_timer(0.03, self.detect_callback)  # 30 FPS aprox
+
+        self.cap = cv2.VideoCapture(0)
+        if not self.cap.isOpened():
+            self.get_logger().error("No se pudo abrir la cámara.")
+            exit()
+
+    def detect_callback(self):
+        ret, frame = self.cap.read()
+        if not ret:
+            self.get_logger().warning("No se pudo leer el frame.")
+            return
+
+        results = self.model(frame)[0]
+
+        for box in results.boxes:
+            cls_id = int(box.cls[0])
+            conf = float(box.conf[0])
+            name = self.model.names[cls_id]
+
+            x1, y1, x2, y2 = map(int, box.xyxy[0])
+            label = f"{name} {conf:.2f}"
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            cv2.putText(frame, label, (x1, y1 - 10),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+
+        cv2.imshow("YOLOv8 en ROS 2", frame)
+        if cv2.waitKey(1) & 0xFF == ord('e'):
+            self.cap.release()
+            cv2.destroyAllWindows()
+            self.destroy_node()
+            rclpy.shutdown()
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = YOLODetector()
+    rclpy.spin(node)

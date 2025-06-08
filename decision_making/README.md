@@ -1,4 +1,4 @@
-
+-------FMS_Help me carry----------
 
 El estado Q1 debe imprimir identificando persona
 La transición a es la tecla a
@@ -50,3 +50,36 @@ La transición u es la tecla u
 La transición v es la tecla v
 La transición w es la tecla w
 La transición x es la tecla x
+
+-------------FMS_General_purpose_service_robot-----------------
+
+El estado Q1 debe imprimir Se detecta obstáculo
+La transición a es la tecla a
+La transición b es la tecla b
+
+El estado Q2 debe imprimir No se detecta obstáculo
+La transición c es la tecla c
+La transición d es la tecla d
+
+El estado Q3 debe imprimir Quieto
+La transición e es la tecla e
+La transición f es la tecla f
+
+El estado Q4 debe imprimir Se recibe orden
+La transición h es la tecla h
+La transición g es la tecla g
+
+El estado Q5 debe imprimir Ejecutando orden
+La transición i es la tecla i
+La transición z es la tecla z
+
+
+El estado Q6 debe imprimir Finalizando orden
+La transición j es la tecla j
+La transición z es la tecla z
+
+
+El estado Q7 debe imprimir punto de instrucción
+La transición k es la tecla k
+La transición l es la tecla l
+La transición z es la tecla z

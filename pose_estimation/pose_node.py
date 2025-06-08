@@ -77,13 +77,11 @@ class PoseEstimator(Node):
                 left_hip_msg.x = left_hip.x
                 left_hip_msg.y = left_hip.y
                 left_hip_msg.z = left_hip.z
-                self.left_hip_pub.publish(left_hip_msg)
                 
                 right_hip_msg = Point()
                 right_hip_msg.x = right_hip.x
                 right_hip_msg.y = right_hip.y
                 right_hip_msg.z = right_hip.z
-                self.right_hip_pub.publish(right_hip_msg)
                 left_wrist = landmarks[self.mp_pose.PoseLandmark.LEFT_WRIST]
                 right_wrist = landmarks[self.mp_pose.PoseLandmark.RIGHT_WRIST]
 

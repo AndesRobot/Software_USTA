@@ -9,7 +9,8 @@ import os
 class STTNode(Node):
     def __init__(self):
         super().__init__('stt_node')
-
+        # Modelos: directorio donde estaran los modelos descomprimidos descargados (Cambiar)
+        # vosk-model-small-en-us-0.15: modelo basico de inglés descomprimido (Cambiar)
         model_path = os.path.expanduser('Modelos/vosk-model-small-en-us-0.15')
         if not os.path.exists(model_path):
             self.get_logger().error(f"No se encontró el modelo en: {model_path}")
@@ -19,7 +20,7 @@ class STTNode(Node):
         self.recognizer = KaldiRecognizer(self.model, 16000)
 
         self.publisher_ = self.create_publisher(String, 'voice_commands', 10)
-
+        # Configuración del microfono
         self.audio = pyaudio.PyAudio()
         self.stream = self.audio.open(format=pyaudio.paInt16,
                                       channels=1,
@@ -44,7 +45,8 @@ class STTNode(Node):
                     self.publisher_.publish(msg)
 
                     if "adiós" in text.lower():
-                        self.get_logger().info("Palabra clave 'adiós' detectada. Cerrando nodo.")
+                        # adios: palabra para finalización, poner según el idioma (Cambiar)
+                        self.get_logger().info("Palabra clave 'adios' detectada. Cerrando nodo.")
                         break
         self.stream.stop_stream()
         self.stream.close()

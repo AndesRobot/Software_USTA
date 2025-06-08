@@ -24,13 +24,10 @@ sudo apt install ros-humble-cv-bridge ros-humble-image-transport
 
 ### Python y Librerías
 
+Versión de Python usada 3.10.12
+
 ```bash
 pip install opencv-python mediapipe numpy
-```
-
-> Si hay conflicto con protobuf:
-```bash
-pip install "protobuf<4.0.0"
 ```
 
 ## Instalación y Ejecución

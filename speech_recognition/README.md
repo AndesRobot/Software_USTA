@@ -1,7 +1,7 @@
 ***
 
 # STT_Node - Nodo de reconocimiento de voz con ROS 2 y Vosk 
-Este repositorio contiene el nodo de ROS 2 en python que utiliza el motor de reconocimiento de voz Vosk para convertir voz a texto en tiempo real y publicar los comandos reconocidos en un tópico llamado /voice_commands.
+Este repositorio contiene el nodo de ROS 2 en python que utiliza el motor de reconocimiento de voz Vosk para convertir voz a texto en tiempo real y publicar los comandos reconocidos en un tópico llamado `/voice_commands`.
 
 ## Requisitos
 Antes de ejecutar este nodo, asegúrate de tener instalados los siguientes requisitos:
@@ -42,7 +42,7 @@ ros2 run <nombre_del_paquete> stt_node
 
 * Captura audio desde el micrófono en tiempo real.
 * Usa Vosk para transcribir el audio a texto.
-* Publica el texto reconocido en el tópico voice_commands como un mensaje tipo std_msgs/msg/String.
+* Publica el texto reconocido en el tópico voice_commands como un mensaje tipo `std_msgs/msg/String`.
 * Si detecta la palabra clave "adiós", el nodo se cierra automáticamente.
 
 ## Uso del tópico

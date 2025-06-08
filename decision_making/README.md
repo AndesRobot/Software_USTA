@@ -49,7 +49,7 @@ Este reto representa un robot multifuncional que puede ejecutar diferentes órde
 
 ### Diagrama FSM
 
-![FSM_GeneralPurpose](FMS_Help_me_carry.png)
+![FSM_GeneralPurpose](General_purpose_service_robot.png)
 
 ---
 

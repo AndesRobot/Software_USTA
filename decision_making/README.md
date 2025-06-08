@@ -29,7 +29,7 @@ Este reto simula la asistencia del robot para llevar una bolsa desde un vehícul
 
 ### Diagrama FSM
 
-![FSM_HelpMeCarry](FMS_Help_me_carry.jpg)
+![FSM_HelpMeCarry](FMS_Help_me_carry.png)
 
 ---
 
@@ -49,7 +49,7 @@ Este reto representa un robot multifuncional que puede ejecutar diferentes órde
 
 ### Diagrama FSM
 
-![FSM_GeneralPurpose](FMS_Help_me_carry.jpg)
+![FSM_GeneralPurpose](FMS_Help_me_carry.png)
 
 ---
 

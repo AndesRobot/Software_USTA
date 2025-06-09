@@ -9,11 +9,11 @@ import os
 class STTNode(Node):
     def __init__(self):
         super().__init__('stt_node')
-        # Modelos: directorio donde estaran los modelos descomprimidos descargados (Cambiar)
-        # vosk-model-small-en-us-0.15: modelo basico de inglés descomprimido (Cambiar)
+        # Modelos: directory where the downloaded unzipped models will be located (Change)
+        # vosk-model-small-en-us-0.15: basic model of decompressed English (Change)
         model_path = os.path.expanduser('Modelos/vosk-model-small-en-us-0.15')
         if not os.path.exists(model_path):
-            self.get_logger().error(f"No se encontró el modelo en: {model_path}")
+            self.get_logger().error(f"The model was not found in: {model_path}")
             return
 
         self.model = Model(model_path)
@@ -29,7 +29,7 @@ class STTNode(Node):
                                       frames_per_buffer=8192)
         self.stream.start_stream()
 
-        self.get_logger().info("STT Node (Vosk, español) iniciado.")
+        self.get_logger().info("STT Node (Vosk, english) started.")
         self.listen_loop()
 
     def listen_loop(self):
@@ -39,14 +39,14 @@ class STTNode(Node):
                 result = json.loads(self.recognizer.Result())
                 text = result.get("text", "")
                 if text:
-                    self.get_logger().info(f"Reconocido: {text}")
+                    self.get_logger().info(f"Recognized: {text}")
                     msg = String()
                     msg.data = text
                     self.publisher_.publish(msg)
 
                     if "adiós" in text.lower():
-                        # adios: palabra para finalización, poner según el idioma (Cambiar)
-                        self.get_logger().info("Palabra clave 'adios' detectada. Cerrando nodo.")
+                        # bye: word for ending, put according to language (Change)
+                        self.get_logger().info("Keyword 'bye' detected. Closing node.")
                         break
         self.stream.stop_stream()
         self.stream.close()

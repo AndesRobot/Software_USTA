@@ -45,6 +45,18 @@ ros2 run <nombre_del_paquete> stt_node
 * Publica el texto reconocido en el tópico voice_commands como un mensaje tipo `std_msgs/msg/String`.
 * Si detecta la palabra clave "adiós", el nodo se cierra automáticamente.
 
+## Nueva versión con análisis y filtros
+Esta nueva versión amplía las capacidades del nodo stt_node al detectar la palabra clave "analyze". Al activarse:
+
+* Graba un segmento de audio de 5 segundos.
+* Aplica diferentes tipos de filtros al audio:
+   * Filtro Notch para eliminar frecuencias específicas (como 1000 Hz).
+   * Filtro Butterworth de paso bajo y paso alto.
+   * Filtro FIR de paso bajo.
+* Se generan y muestran gráficas comparando la señal original con las señales filtradas tanto en el dominio del tiempo como de la frecuencia (FFT).
+
+Esto permite visualizar y evaluar la calidad del audio, así como el impacto de cada filtro sobre la señal.
+
 ## Uso del tópico
 Puedes suscribirte al tópico con:
 ```bash

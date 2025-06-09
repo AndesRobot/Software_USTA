@@ -1,5 +1,5 @@
 def q1():
-    print("Q1: Esperar persona (waiting_person)")
+    print("Q1: Waiting for person (waiting_person)")
     while True:
         char = yield
         if char == 'a':
@@ -10,7 +10,7 @@ def q1():
             break
 
 def q2():
-    print("Q2: Indicar que está listo (notifying_reading)")
+    print("Q2: Indicating readiness (notifying_reading)")
     while True:
         char = yield
         if char == 'c':
@@ -21,10 +21,10 @@ def q2():
             break
 
 def q3():
-    print("Q3: Seguir persona (following_person)")
+    print("Q3: Following person (following_person)")
     while True:
         char = yield
-        if char == 'e':
+        if char == 'g':
             yield from q4()
         elif char == 'f':
             yield from q3()
@@ -32,21 +32,23 @@ def q3():
             break
 
 def q4():
-    print("Q4: Esperar persona detenida / Detectar indicación (detecting_indication)")
+    print("Q4: Wait for stopped person / Detect indication (detecting_indication)")
     while True:
         char = yield
-        if char == 'g':
+        if char == 'h':
             yield from q3()
-        elif char == 'h':
+        elif char == 'i':
             yield from q5()
+        elif char == 'e':
+            yield from q1()
         else:
             break
 
 def q5():
-    print("Q5: Detectar bolsa (recognition_bag)")
+    print("Q5: Detect bag (recognition_bag)")
     while True:
         char = yield
-        if char == 'i':
+        if char == 'k':
             yield from q6()
         elif char == 'j':
             yield from q4()
@@ -54,28 +56,28 @@ def q5():
             break
 
 def q6():
-    print("Q6: Navegar a bolsa (navegation_to_bag)")
+    print("Q6: Navigate to bag (navegation_to_bag)")
     while True:
         char = yield
-        if char == 'k':
+        if char == 'l':
             yield from q7()
         else:
             break
 
 def q7():
-    print("Q7: Recoger bolsa (picking_up_bag)")
+    print("Q7: Pick up bag (picking_up_bag)")
     while True:
         char = yield
-        if char == 'l':
+        if char == 'm':
             yield from q8()
         else:
             break
 
 def q8():
-    print("Q8: Avanzar a home (homing)")
+    print("Q8: Move to home (homing)")
     while True:
         char = yield
-        if char == 'm':
+        if char == 'o':
             yield from q9()
         elif char == 'n':
             yield from q10()
@@ -83,18 +85,16 @@ def q8():
             break
 
 def q9():
-    print("Q9: Detectar obstáculos (detecting_obstacles)")
+    print("Q9: Detect obstacles (detecting_obstacles)")
     while True:
         char = yield
-        if char == 'o':
-            yield from q9()
-        elif char == 'p':
+        if char == 'p':
             yield from q8()
         else:
             break
 
 def q10():
-    print("Q10: Entregar bolsa (delivering_bag)")
+    print("Q10: Deliver bag (delivering_bag)")
     while True:
         char = yield
         if char == 'q':
@@ -103,7 +103,7 @@ def q10():
             break
 
 def q11():
-    print("Q11: Hacer fila (queueing)")
+    print("Q11: Queueing (queueing)")
     while True:
         char = yield
         if char == 'r':
@@ -116,13 +116,13 @@ def fsm():
     next(state)
     while True:
         try:
-            char = input("Presiona una tecla (a–r) o 'exit' para salir: ").lower()
+            char = input("Press a key (a–r) or 'exit' to quit: ").lower()
             if char == 'exit':
                 break
             state.send(char)
         except StopIteration:
-            print("Estado no válido o final alcanzado.")
+            print("Invalid state or final state reached.")
             break
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     fsm()

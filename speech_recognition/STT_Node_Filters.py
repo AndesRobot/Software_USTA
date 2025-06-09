@@ -12,9 +12,9 @@ from scipy import signal
 class STTNode(Node):
     def __init__(self):
         super().__init__('stt_node')
-        # Modelos: directory where the downloaded unzipped models will be located (Change)
+        # Models: directory where the downloaded unzipped models will be located (Change)
         # vosk-model-small-en-us-0.15: basic model of decompressed English (Change)
-        model_path = os.path.expanduser('/home/juan/robo_voice/Modelos/vosk-model-small-en-us-0.15')
+        model_path = os.path.expanduser('/home/juan/robo_voice/Models/vosk-model-small-en-us-0.15')
         if not os.path.exists(model_path):
             self.get_logger().error(f"The model was not found in: {model_path}")
             return
@@ -32,7 +32,7 @@ class STTNode(Node):
                                       frames_per_buffer=8192)
         self.stream.start_stream()
 
-        self.get_logger().info("Nodo STT iniciado. Say 'analyze' to display graphs or 'goodbye' to exit.")
+        self.get_logger().info("STT node started. Say 'analyze' to display graphs or 'goodbye' to exit.")
         self.listen_loop()
 
     def listen_loop(self):

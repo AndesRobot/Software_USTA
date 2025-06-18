@@ -99,3 +99,71 @@ def fsm():
 
 if __name__ == "__main__":
     fsm()
+
+
+
+
+
+
+
+
+
+
+#codigo h
+
+# Estado inicial
+state = "MOVE_TO_TEST_LOCATION"
+
+# Posiciones simuladas
+start_position = "punto_de_inicio"
+cabinet_position = "frente_al_gabinete"
+table_position = "mesa_de_objetos"
+person_position = "persona_juez"
+
+# Lista de objetos detectados
+detected_objects = []
+cabinet = {}
+
+while state != "END":
+    match state:
+        case "MOVE_TO_TEST_LOCATION":
+            print("Moviéndose al área de prueba...")
+            state = "DETECT_TABLE_OBJECTS"
+
+        case "DETECT_TABLE_OBJECTS":
+            print("Detectando objetos en la mesa...")
+            detected_objects = ["manzana", "naranja", "plátano", "cereal_box"]
+            state = "CLASSIFY_OBJECTS"
+
+        case "CLASSIFY_OBJECTS":
+            print("Clasificando objetos por similitud...")
+            cabinet = {
+                "frutas": ["manzana", "naranja", "plátano"],
+                "cereales": ["cereal_box"]
+            }
+            state = "OPEN_CABINET_DOOR"
+
+        case "OPEN_CABINET_DOOR":
+            print("Intentando abrir la puerta del gabinete...")
+            # Simulamos que el robot tiene exito al hacer su tarea de wea
+            state = "STORE_OBJECTS"
+
+        case "STORE_OBJECTS":
+            for categoria, objetos in cabinet.items():
+                for obj in objetos:
+                    print(f"Moviendo {obj} al estante de {categoria}.")
+
+        case "RETURN_TO_START":
+            print(f"Regresando a la posición inicial: {start_position}")
+            state = "REPORT_TO_PERSON"
+
+        case "REPORT_TO_PERSON":
+            # El robot navega por la sala para decir que su tarea fue hecha con exito informando al respecto
+            print(f"Dirigiéndose a la persona en {person_position} para informar.")
+            print("Tarea completada. Todos los objetos han sido almacenados correctamente.")
+            state = "END"
+
+print("Fin de la secuencia. Robot listo para nueva tarea.")
+
+print("Tarea de almacenamiento completada correctamente.")
+

@@ -129,3 +129,58 @@ def fsm():
 
 if __name__ == "__main__":
     fsm()
+
+
+# codigo h
+
+state = "MOVE_TO_KITCHEN"
+
+# Simulación de detección y ubicación de objetos
+table_objects = ["tenedor", "cuchillo", "plato", "vaso1", "vaso2"]
+dishwasher_tab = "pastilla"
+wiping_object = "esponja"
+start_position = "entrada"
+person_position = "persona_juez"
+
+while state != "END":
+    match state:
+        case "MOVE_TO_KITCHEN":
+            print("Moviéndose a la cocina...")
+            state = "DETECT_TABLE_OBJECTS"
+
+        case "DETECT_TABLE_OBJECTS":
+            print("Detectando objetos en la mesa...")
+            print(f"Objetos detectados: {table_objects}")
+            state = "OPEN_DISHWASHER"
+
+        case "OPEN_DISHWASHER":
+            print("Abriendo la puerta del lavavajillas...")
+            print("Extrayendo bandeja si es necesario...")
+            state = "PLACE_DISHES"
+
+        case "PLACE_DISHES":
+            for obj in table_objects:
+                if obj in ["tenedor", "cuchillo", "plato"]:
+                    print(f"Colocando {obj} en el lavavajillas.")
+                else:
+                    print(f"Colocando {obj} (vaso) en el basurero.")
+            state = "INSERT_TAB"
+
+        case "INSERT_TAB":
+            print(f"Colocando la {dishwasher_tab} en su ranura.")
+            state = "WIPE_TABLE"
+
+        case "WIPE_TABLE":
+            print(f"Usando {wiping_object} para limpiar el área donde estaba la bebida.")
+            state = "RETURN_TO_START"
+
+        case "RETURN_TO_START":
+            print(f"Regresando a la posición inicial: {start_position}")
+            state = "REPORT_TO_PERSON"
+
+        case "REPORT_TO_PERSON":
+            print(f"Dirigiéndose a {person_position} para reportar finalización.")
+            print("Mesa limpiada. Todos los objetos fueron colocados correctamente.")
+            state = "END"
+
+print("Tarea finalizada.")

@@ -19,9 +19,8 @@ start_position = "punto_de_inicio"
 while state != "END":
     match state:
         case "WAIT_FOR_GUEST":
-            #  Esperar la llegada de un nuevo invitado.
-            # Detectar si alguien se aproxima o si la puerta se abre.
-            # preparar algun sistema de respuesta para dar un paso
+            # Esperar la llegada de un nuevo invitado.
+            # Detectar si alguien se aproxima.
             print("Esperando al invitado...")
             state = "GREET_GUEST"
 
@@ -32,7 +31,7 @@ while state != "END":
 
         case "ASK_INFO":
             # Preguntar por el nombre, bebida favorita o cosa de interes que quiera.
-            # Aquí usar reconocimiento de voz o cara para poder guardar la informacion
+            # Aquí usar asignación de ID para poder guardar la informacion
             print("Pidiendo información del invitado.")
             guest_data.append({
                 "name": f"Invitado_{guest_counter+1}",
@@ -77,7 +76,7 @@ while state != "END":
             print(f"Regresando a la posición inicial: {start_position}")
             state = "END"
 
-print("Tarea completida y ya dejen de webear.")
+print("Tarea completada.")
 
 def Storing_Groceries():
     #Storing Groceries

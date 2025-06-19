@@ -188,13 +188,112 @@ while state != "END":
 print("Tarea finalizada.")
 
 def Enhanced_General_Purpose_Service_Robot():
-    #Enhanced General Purpose Service Robot
+    print("Robot: Hola, estoy listo para ayudarte. Por favor, dime qué necesitas.")
+    
+    entrada_usuario = "Tengo sed"
+    print(f"Usuario: {entrada_usuario}")
+    
+    if "hambre" in entrada_usuario.lower():
+        necesidad = "snack"
+        accion = "llevar comida"
+    elif "frío" in entrada_usuario.lower():
+        necesidad = "manta"
+        accion = "llevar manta"
+    elif "sed" in entrada_usuario.lower():
+        necesidad = "botella"
+        accion = "llevar bebida"
+    else:
+        print("Error: No se pudo interpretar la intención del usuario.")
+        print("Robot: Lo siento, ¿podrías repetir lo que necesitas?")
+        return
+
+    print(f"Razonamiento: necesidad detectada = {necesidad}, acción = {accion}")
+    print("Navegación: dirigiéndose al lugar donde podría estar el objeto...")
+
+    objetos_detectados = ["manta", "snack", "botella"]
+    print(f"Detección de objetos: elementos encontrados = {objetos_detectados}")
+    
+    if necesidad in objetos_detectados:
+        print(f"Objeto encontrado: {necesidad}")
+        print(f"Brazo robótico: tomando el objeto {necesidad}")
+        print("Navegación: regresando con el operador...")
+        print(f"Entrega: {necesidad} entregado al operador")
+        print("Robot: Aquí tienes, avísame si necesitas algo más.")
+    else:
+        print("Error: El objeto necesario no se encuentra disponible.")
+        print("Robot: No pude encontrar lo que necesitas, ¿quieres que lo intente de nuevo?")
+    
+    print("Tarea completada: Robot de servicio general finalizado\n")
 
 def Restaurant():
-    #Restaurant
+    print("Robot: Bienvenido al restaurante, ¿qué deseas ordenar?")
+    
+    entrada_cliente = "Quisiera jugo de naranja"
+    print(f"Cliente: {entrada_cliente}")
+    
+    menu_disponible = ["soda", "jugo de naranja", "agua"]
+    pedido = "jugo de naranja"
+    
+    if pedido not in menu_disponible:
+        print(f"Error: {pedido} no está en el menú.")
+        print("Robot: Lo siento, ese producto no está disponible. Por favor, elige otro.")
+        return
+
+    print(f"Pedido recibido: {pedido}")
+    print("Navegación: yendo a la cocina...")
+
+    objetos_en_cocina = ["jugo de naranja", "jugo de manzana", "soda"]
+    print(f"Objetos detectados en cocina: {objetos_en_cocina}")
+    
+    if pedido in objetos_en_cocina:
+        print(f"Producto encontrado: {pedido}")
+        print("Brazo robótico: tomando el producto...")
+        print("Navegación: volviendo con el cliente...")
+        print(f"Entrega: {pedido} entregado correctamente.")
+        print("Robot: Aquí tienes tu jugo de naranja, que lo disfrutes.")
+    else:
+        print("Error: No se encontró el objeto solicitado.")
+        print("Robot: No pude localizar el producto, inténtalo de nuevo más tarde.")
+    
+    print("Tarea completada: Escenario restaurante finalizado\n")
 
 def Give_Me_a_Hand():
-    #Give Me a Hand
+    print("Robot: Estoy listo para ayudarte, dime qué objeto necesitas que traiga.")
+    
+    solicitudes = ["control remoto", "libro", "vaso"]
+    ubicaciones = {"control remoto": "sala", "libro": "dormitorio", "vaso": "cocina"}
+    objetos_disponibles = {
+        "sala": ["control remoto", "cojín"],
+        "dormitorio": ["libro", "lámpara"],
+        "cocina": ["vaso", "plato"]
+    }
+
+    for objeto in solicitudes:
+        print(f"\nUsuario: Por favor, tráeme el {objeto}")
+        ubicacion = ubicaciones.get(objeto)
+        
+        if not ubicacion:
+            print(f"Error: No se conoce la ubicación del objeto {objeto}")
+            print("Robot: Lo siento, no estoy entrenado para buscar ese objeto.")
+            continue
+
+        print(f"Navegación: yendo a la {ubicacion} para buscar el {objeto}")
+        encontrados = objetos_disponibles.get(ubicacion, [])
+        print(f"Escaneo en {ubicacion}: objetos vistos = {encontrados}")
+        
+        if objeto in encontrados:
+            print(f"Objeto encontrado: {objeto}")
+            print("Brazo robótico: recogiendo el objeto...")
+            print("Navegación: regresando con el operador...")
+            print(f"Entrega: {objeto} entregado correctamente")
+            print(f"Robot: Aquí tienes el {objeto}")
+        else:
+            print(f"Error: No encontré el {objeto} en la {ubicacion}")
+            print("Robot: No pude encontrarlo, ¿deseas que intente con otro?")
+    
+    print("\nRobot: ¿Necesitas algo más?")
+    print("Usuario: No, gracias.")
+    print("Tarea completada: Dame una mano finalizado\n")
 
 def show_menu():
     print("\n=== MAIN MENU ===")

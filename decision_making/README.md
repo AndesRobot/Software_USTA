@@ -75,14 +75,14 @@
 
 ### State Definitions
 
-|Estado	|Estado|	Nombres |	Español	 | Ingles |
-|--|----|-----|----------|---------|
-|Q1	|Mantenerse quieto |	remaining_idle|	Estoy esperando instrucciones.|	I am waiting for instructions.|
-|Q2|	Recibir orden|	receiving_command|	Por favor, dime qué tarea debo realizar.|	Por favor, dime qué tarea debo realizar.|
-|Q3	|Ejecutar orden|	executing_command	|Ejecutando la orden recibida. Por favor, mantente atento.	|Executing the received command. Please stay alert.|
-|Q4|	Finalizar orden|	finishing_command|	He terminado la orden. ¿Necesitas algo más?|	I have finished the command. Do you need anything else?|
-|Q5|	Llegar a instrucción|	reaching_instruction|	Estoy llegando al punto de instrucción.	|I am approaching the instruction point.|
-|Q6|	Detectar obstaculos|	detecting_obstacles|	Hay un obstáculo en mi camino. Buscando ruta alternativa.	|There is an obstacle in my path. Looking for an alternate route.|
+|Estado	|	Nombres |	Español	 | Ingles |
+|--|--------|----------|---------|
+|Q1	 |	remaining_idle|	Estoy esperando instrucciones.|	I am waiting for instructions.|
+|Q2|	receiving_command|	Por favor, dime qué tarea debo realizar.|	Por favor, dime qué tarea debo realizar.|
+|Q3	|	executing_command	|Ejecutando la orden recibida. Por favor, mantente atento.	|Executing the received command. Please stay alert.|
+|Q4|	finishing_command|	He terminado la orden. ¿Necesitas algo más?|	I have finished the command. Do you need anything else?|
+|Q5|	reaching_instruction|	Estoy llegando al punto de instrucción.	|I am approaching the instruction point.|
+|Q6|	detecting_obstacles|	Hay un obstáculo en mi camino. Buscando ruta alternativa.	|There is an obstacle in my path. Looking for an alternate route.|
 
 
 

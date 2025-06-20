@@ -15,19 +15,20 @@
 
 ### State Definitions
 
-| State | Description (Spanish) | Technical Name |
-|-------|----------------------|----------------|
-| Q1 | Esperar persona | waiting_person |
-| Q2 | Indicar que esta listo | notifiying_reading |
-| Q3 | Seguir persona | following_person |
-| Q4 | Esperar persona detenida / Detectar indicación | detecting_indication |
-| Q5 | Detectar bolsa | recognition_bag |
-| Q6 | Navegar a bolsa | navegation_to_bag |
-| Q7 | Recoger bolsa | picking_up_bag |
-| Q8 | Avanzar a home | homing |
-| Q9 | Detectar obstaculos | detecting_obstacles |
-| Q10 | Entregar bolsa | delivering_bag |
-| Q11 | Hacer fila | queuing |
+|Estado	|Nombre	             |   Español	                                                            |     Ingles|
+|-------|--------------------|------------------------------------------------------------------------|-----------------------------------------------------------|
+|Q1	  |  waiting_person	     |   Estoy esperando a que se acerque una persona.	     |                   I am waiting for someone to approach.|
+|Q2	  |  notifiying_reading	  |  Estoy listo para seguirte. Por favor, comienza a caminar cuando quieras.	|I’m ready to follow you. Please start walking when you're ready.|
+|Q3	  |  following_person	  |  Siguiendo a la persona. Por favor, camina despacio y no te detengas bruscamente.	|Following the person. Please walk slowly and avoid sudden stops.|
+|Q4	  |  detecting_indication|	Me detuve. Esperando una indicación para continuar.	                    |I’ve stopped. Waiting for an indication to continue.|
+|Q5	  |  recognition_bag	   |    Buscando la bolsa señalada… Por favor, mantén el gesto unos segundos.|	Searching for the pointed bag… Please hold the gesture for a few seconds.|
+|Q6	  |  navegation_to_bag	  |  Dirigiéndome hacia la bolsa seleccionada.	                        |    Navigating to the selected bag.|
+|Q7	  |  picking_up_bag	     |   Recogiendo la bolsa con cuidado. Por favor, aléjate un poco.	      |  Picking up the bag carefully. Please stand back slightly.|
+|Q8	  |  homing	              |  Regresando al punto de inicio con la bolsa.	                      |  Returning to the starting point with the bag.|
+|Q9	  |  detecting_obstacles	|    Obstáculo detectado. Buscando nueva ruta.	                         |   Obstacle detected. Searching for an alternate path.|
+|Q10	  |  delivering_bag	      |  Entregando la bolsa en la zona indicada.	                          |  Delivering the bag to the designated area.|
+|Q11	  |  queuing	             |   Me estoy uniendo a la fila para regresar. Manteniendo distancia social.|	Joining the queue to return. Maintaining social distance.|
+
 
 ### Events
 
@@ -74,14 +75,16 @@
 
 ### State Definitions
 
-| State | Description (Spanish) | Technical Name |
-|-------|----------------------|----------------|
-| Q1 | Mantenerse quieto | remaining_idle |
-| Q2 | Recibir orden | receiving_command |
-| Q3 | Ejecutar orden | executing_command |
-| Q4 | Finalizar orden | finishing_command |
-| Q5 | Llegar a instrucción | reaching_instruction |
-| Q6 | Detectar obstaculos | detecting_obstacles |
+|Estado	|Estado|	Nombres |	Español	 | Ingles |
+|--|----|-----|----------|---------|
+|Q1	|Mantenerse quieto |	remaining_idle|	Estoy esperando instrucciones.|	I am waiting for instructions.|
+|Q2|	Recibir orden|	receiving_command|	Por favor, dime qué tarea debo realizar.|	Por favor, dime qué tarea debo realizar.|
+|Q3	|Ejecutar orden|	executing_command	|Ejecutando la orden recibida. Por favor, mantente atento.	|Executing the received command. Please stay alert.|
+|Q4|	Finalizar orden|	finishing_command|	He terminado la orden. ¿Necesitas algo más?|	I have finished the command. Do you need anything else?|
+|Q5|	Llegar a instrucción|	reaching_instruction|	Estoy llegando al punto de instrucción.	|I am approaching the instruction point.|
+|Q6|	Detectar obstaculos|	detecting_obstacles|	Hay un obstáculo en mi camino. Buscando ruta alternativa.	|There is an obstacle in my path. Looking for an alternate route.|
+
+
 
 ### Events
 

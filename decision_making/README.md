@@ -71,7 +71,7 @@
 
 ---
 
-## Challenge 2: Help Me Carry (Version 2)
+## Challenge 2: General_purpose_service_robot
 
 ### State Definitions
 

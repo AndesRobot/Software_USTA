@@ -19,9 +19,9 @@
 |-------|--------------------|------------------------------------------------------------------------|-----------------------------------------------------------|
 |Q1	  |  waiting_person	     |   Estoy esperando a que se acerque una persona.	     |                   I am waiting for someone to approach.|
 |Q2	  |  notifiying_reading	  |  Estoy listo para seguirte. Por favor, comienza a caminar cuando quieras.	|I’m ready to follow you. Please start walking when you're ready.|
-|Q3	  |  following_person	  |  Siguiendo a la persona. Por favor, camina despacio y no te detengas bruscamente.	|Following the person. Please walk slowly and avoid sudden stops.|
+|Q3	  |  following_person	  |  Siguiendo a la persona.	|Following the person..|
 |Q4	  |  detecting_indication|	Me detuve. Esperando una indicación para continuar.	                    |I’ve stopped. Waiting for an indication to continue.|
-|Q5	  |  recognition_bag	   |    Buscando la bolsa señalada… Por favor, mantén el gesto unos segundos.|	Searching for the pointed bag… Please hold the gesture for a few seconds.|
+|Q5	  |  recognition_bag	   |    Buscando la bolsa |	Searching for the  bag.|
 |Q6	  |  navegation_to_bag	  |  Dirigiéndome hacia la bolsa seleccionada.	                        |    Navigating to the selected bag.|
 |Q7	  |  picking_up_bag	     |   Recogiendo la bolsa con cuidado. Por favor, aléjate un poco.	      |  Picking up the bag carefully. Please stand back slightly.|
 |Q8	  |  homing	              |  Regresando al punto de inicio con la bolsa.	                      |  Returning to the starting point with the bag.|

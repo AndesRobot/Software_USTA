@@ -218,7 +218,7 @@
 | Q2 | Navigate to the table | path_planning, mobility_control |
 | Q3 | Select object | object_detection, object_recognition |
 | Q4 | Transport to storage area | mobility_control, pose_estimation, path_planning |
-| Q5 | Store object | armcontrol, object_detection, pose_estimation |
+| Q5 | Store object | armcontrol, object_detection |
 | Q6 | Pour cereal | armcontrol, pose_estimation |
 | Q7 | Complete task | t2s, speech_recognition |
 | Q8 | Detect obstacle | object_detection, mobility_control |

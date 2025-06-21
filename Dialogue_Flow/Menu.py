@@ -1,304 +1,387 @@
 def Help_me_carry():
-    #Help me carry
+    # Task: Help Me Carry
+    # 300 pts - follow the operator
+    # 200 pts - avoid obstacles
+    # 100 pts - pick up the bag
+    # 200 pts - return
+    # 300 pts - join the line (optional)
 
-def Help_me_carry_2():
-    #Help Me Carry 2
+    # Follow the operator
+    print("[Node_pose_estimation] Searching for the operator...")
+    # Will confirm with object_detection node
+    # Publishing: /pose_estimation (std_msgs/Bool) -> True
+    # Publishing: /object_detection (custom_msgs/ObjectRequest) -> Person
+    print("[Node_pose_estimation] Assigning ID to detected operator")
+    # Subscribed: /pose_estimation (custom_msgs/OperatorID) 
+    print("[Node_TTS] I can start following you now")
+    # Publishing: /TTS (std_msgs/String) → "I can start following you now"
+    #Node_mobility_control
+    print("[Node_path_planning] Following the operator at 1 meter distance")
+    # Subscribed: /path_planning
+    # Avoid obstacles
+    print("[Node_path_planning] Adjusting trajectory to avoid obstacles")
+    # Possibly better to use Lidar
+    print("[Node_path_planning] Detecting obstacles in the environment")
 
-def Receptionist():
-    # Estado inicial
-state = "WAIT_FOR_GUEST"
+    # Pick up the bag
+    print("[Node_object_detection] Detecting cart and bag")
+    print("[Node_armcontrol] Picking up the bag from the cart")
 
-# Contador de invitados y su información para el propio robot en caso de que pregunten 
-guest_counter = 0
-guest_data = []
+    # Return
+    print("[Node_path_planning] Returning to the initial position")
+    print("[Node_path_planning] Adjusting trajectory to avoid obstacles")
+    print("[Node_path_planning] Detecting obstacles in the environment")
+    print("[Node_armcontrol] Placing the bag on the ground")
+
+    # Join the line (optional)
+    print("[Node_pose_estimation] Detecting if there is a line")
+    print("[Node_path_planning] Positioning at the end of the line")
+
+    print("[LOG] ✅ Task completed: Help Me Carry")
 
 
-# Posición inicial simulada (puede ser coordenadas, aquí solo como referencia textual)
-start_position = "punto_de_inicio"
+def General_Purpose_Service_Robot():
+    # Task: General Purpose Service Robot
+    # 3 structured tasks x 400 pts = 1200 pts
+    # Bonus: tasks given by non-expert user (3x100 pts)
 
-while state != "END":
-    match state:
-        case "WAIT_FOR_GUEST":
-            # Esperar la llegada de un nuevo invitado.
-            # Detectar si alguien se aproxima.
-            print("Esperando al invitado...")
-            state = "GREET_GUEST"
+    print("[Node_TTS] Hello, I’m ready to help you. Please tell me what you need.")
 
-        case "GREET_GUEST":
-            # Saludar al invitado, hacer contacto visual y dar la bienvenida a la casa.
-            print("Saludando al invitado.")
-            state = "ASK_INFO"
+    user_commands = [
+        "Give Pepito in the kitchen the knife that is in the living room",
+        "I'm cold",
+        "Take a pen to Juan"
+    ]
 
-        case "ASK_INFO":
-            # Preguntar por el nombre, bebida favorita o cosa de interes que quiera.
-            # Aquí usar asignación de ID para poder guardar la informacion
-            print("Pidiendo información del invitado.")
-            guest_data.append({
-                "name": f"Invitado_{guest_counter+1}",
-                "drink": "jugo",  # simulado
-                "interest": "música"  # simulado
-            })
-            state = "GUIDE_TO_BEVERAGE"
+    for user_input in user_commands:
+        print(f"[Node_STT] User: {user_input}")
 
-        case "GUIDE_TO_BEVERAGE":
-            # Comentario: Guiar al invitado hacia la mesa de bebidas.
-            print("Guiando al invitado a la mesa de bebidas.")
-            state = "ASK_FOR_INTEREST"
-
-        case "ASK_FOR_INTEREST":
-            # Preguntar si es de su gusto las bebidas disponibles, en caso de que le pregunten debe decir que solo estan disponibles estas dispuestas
-            print("Verificando el interés en la bebida.")
-            state = "GUIDE_TO_LIVINGROOM"
-
-        case "GUIDE_TO_LIVINGROOM":
-            # Navegar hacia la sala de estar con la persona evadiendo en caso de haber obstaculos y en caso de, decirle a la persona que tenga cuidado
-            print("Llevando al invitado a la sala de estar.")
-            state = "SEAT_GUEST"
-
-        case "SEAT_GUEST":
-            # Asignar asiento disponible y registrar posición. en caso de que el invitado cambie de posicion que lo registre
-            guest_counter += 1
-            print(f"Invitado {guest_counter} sentado.")
-            if guest_counter == 2:
-                state = "INTRODUCE_GUESTS"
-            else:
-                state = "WAIT_FOR_GUEST"
-
-        case "INTRODUCE_GUESTS":
-            # Presentar a los dos invitados entre sí con nombre, bebida e intereses
-            print("Presentando invitados:")
-            for g in guest_data:
-                print(f"- {g['name']}, le gusta el {g['drink']} y le interesa la {g['interest']}.")
-            state = "END"
-
-        case "RETURN_TO_START":
-            # Regresar a la posición de inicio al finalizar la tarea para esperar a otro invitado
-            print(f"Regresando a la posición inicial: {start_position}")
-            state = "END"
-
-print("Tarea completada.")
-
-def Storing_Groceries():
-    # Estado inicial
-    state = "MOVE_TO_TEST_LOCATION"
-    
-    # Posiciones simuladas
-    start_position = "punto_de_inicio"
-    cabinet_position = "frente_al_gabinete"
-    table_position = "mesa_de_objetos"
-    person_position = "persona_juez"
-    
-    # Lista de objetos detectados
-    detected_objects = []
-    cabinet = {}
-    
-    while state != "END":
-        match state:
-            case "MOVE_TO_TEST_LOCATION":
-                print("Moviéndose al área de prueba...")
-                state = "DETECT_TABLE_OBJECTS"
-    
-            case "DETECT_TABLE_OBJECTS":
-                print("Detectando objetos en la mesa...")
-                detected_objects = ["manzana", "naranja", "plátano", "cereal_box"]
-                state = "CLASSIFY_OBJECTS"
-    
-            case "CLASSIFY_OBJECTS":
-                print("Clasificando objetos por grupos...")
-                cabinet = {
-                    "frutas": ["manzana", "naranja", "plátano"],
-                    "cereales": ["cereal_box"]
-                }
-                state = "OPEN_CABINET_DOOR"
-    
-            case "OPEN_CABINET_DOOR":
-                print("Intentando abrir la puerta del gabinete...")
-                # Simulamos que el robot tiene exito al hacer su tarea de wea
-                state = "STORE_OBJECTS"
-    
-            case "STORE_OBJECTS":
-                for categoria, objetos in cabinet.items():
-                    for obj in objetos:
-                        print(f"Moviendo {obj} al estante de {categoria}.")
-    
-            case "RETURN_TO_START":
-                print(f"Regresando a la posición inicial: {start_position}")
-                state = "REPORT_TO_PERSON"
-    
-            case "REPORT_TO_PERSON":
-                # El robot navega por la sala para decir que su tarea fue hecha con exito informando al respecto
-                print(f"Dirigiéndose a la persona en {person_position} para informar.")
-                #if almaceno todos dice esto
-                print("Tarea completada. Todos los objetos han sido almacenados correctamente.")
-                ##else if almaceno # cantidad de objetos
-                print("Tarea incompleta. # cantidad de objetos han sido almacenados correctamente.")
-                state = "END"
-    
-    print("Tarea de almacenamiento completada correctamente.")
-
-def Clean_the_Table():
-    # Simulación de detección y ubicación de objetos
-table_objects = ["tenedor", "cuchillo", "plato", "vaso1", "vaso2"]
-dishwasher_tab = "pastilla"
-wiping_object = "esponja"
-start_position = "entrada"
-person_position = "persona_juez"
-
-while state != "END":
-    match state:
-        case "MOVE_TO_KITCHEN":
-            print("Moviéndose a la cocina...")
-            state = "DETECT_TABLE_OBJECTS"
-
-        case "DETECT_TABLE_OBJECTS":
-            print("Detectando objetos en la mesa...")
-            print(f"Objetos detectados: {table_objects}")
-            state = "OPEN_DISHWASHER"
-
-        case "OPEN_DISHWASHER":
-            print("Abriendo la puerta del lavavajillas...")
-            print("Extrayendo bandeja si es necesario...")
-            state = "PLACE_DISHES"
-
-        case "PLACE_DISHES":
-            for obj in table_objects:
-                if obj in ["tenedor", "cuchillo", "plato"]:
-                    print(f"Colocando {obj} en el lavavajillas.")
-                else:
-                    print(f"Colocando {obj} (vaso) en el basurero.")
-            state = "INSERT_TAB"
-
-        case "INSERT_TAB":
-            print(f"Colocando la {dishwasher_tab} en su ranura.")
-            state = "WIPE_TABLE"
-
-        case "WIPE_TABLE":
-            print(f"Usando {wiping_object} para limpiar el área donde estaba la bebida.")
-            state = "RETURN_TO_START"
-
-        case "RETURN_TO_START":
-            print(f"Regresando a la posición inicial: {start_position}")
-            state = "REPORT_TO_PERSON"
-
-        case "REPORT_TO_PERSON":
-            print(f"Dirigiéndose a {person_position} para reportar finalización.")
-            print("Mesa limpiada. Todos los objetos fueron colocados correctamente.")
-            state = "END"
-
-print("Tarea finalizada.")
-
-def Enhanced_General_Purpose_Service_Robot():
-    print("Robot: Hola, estoy listo para ayudarte. Por favor, dime qué necesitas.")
-    
-    entrada_usuario = "Tengo sed"
-    print(f"Usuario: {entrada_usuario}")
-    
-    if "hambre" in entrada_usuario.lower():
-        necesidad = "snack"
-        accion = "llevar comida"
-    elif "frío" in entrada_usuario.lower():
-        necesidad = "manta"
-        accion = "llevar manta"
-    elif "sed" in entrada_usuario.lower():
-        necesidad = "botella"
-        accion = "llevar bebida"
-    else:
-        print("Error: No se pudo interpretar la intención del usuario.")
-        print("Robot: Lo siento, ¿podrías repetir lo que necesitas?")
-        return
-
-    print(f"Razonamiento: necesidad detectada = {necesidad}, acción = {accion}")
-    print("Navegación: dirigiéndose al lugar donde podría estar el objeto...")
-
-    objetos_detectados = ["manta", "snack", "botella"]
-    print(f"Detección de objetos: elementos encontrados = {objetos_detectados}")
-    
-    if necesidad in objetos_detectados:
-        print(f"Objeto encontrado: {necesidad}")
-        print(f"Brazo robótico: tomando el objeto {necesidad}")
-        print("Navegación: regresando con el operador...")
-        print(f"Entrega: {necesidad} entregado al operador")
-        print("Robot: Aquí tienes, avísame si necesitas algo más.")
-    else:
-        print("Error: El objeto necesario no se encuentra disponible.")
-        print("Robot: No pude encontrar lo que necesitas, ¿quieres que lo intente de nuevo?")
-    
-    print("Tarea completada: Robot de servicio general finalizado\n")
-
-def Restaurant():
-    print("Robot: Bienvenido al restaurante, ¿qué deseas ordenar?")
-    
-    entrada_cliente = "Quisiera jugo de naranja"
-    print(f"Cliente: {entrada_cliente}")
-    
-    menu_disponible = ["soda", "jugo de naranja", "agua"]
-    pedido = "jugo de naranja"
-    
-    if pedido not in menu_disponible:
-        print(f"Error: {pedido} no está en el menú.")
-        print("Robot: Lo siento, ese producto no está disponible. Por favor, elige otro.")
-        return
-
-    print(f"Pedido recibido: {pedido}")
-    print("Navegación: yendo a la cocina...")
-
-    objetos_en_cocina = ["jugo de naranja", "jugo de manzana", "soda"]
-    print(f"Objetos detectados en cocina: {objetos_en_cocina}")
-    
-    if pedido in objetos_en_cocina:
-        print(f"Producto encontrado: {pedido}")
-        print("Brazo robótico: tomando el producto...")
-        print("Navegación: volviendo con el cliente...")
-        print(f"Entrega: {pedido} entregado correctamente.")
-        print("Robot: Aquí tienes tu jugo de naranja, que lo disfrutes.")
-    else:
-        print("Error: No se encontró el objeto solicitado.")
-        print("Robot: No pude localizar el producto, inténtalo de nuevo más tarde.")
-    
-    print("Tarea completada: Escenario restaurante finalizado\n")
-
-def Give_Me_a_Hand():
-    print("Robot: Estoy listo para ayudarte, dime qué objeto necesitas que traiga.")
-    
-    solicitudes = ["control remoto", "libro", "vaso"]
-    ubicaciones = {"control remoto": "sala", "libro": "dormitorio", "vaso": "cocina"}
-    objetos_disponibles = {
-        "sala": ["control remoto", "cojín"],
-        "dormitorio": ["libro", "lámpara"],
-        "cocina": ["vaso", "plato"]
-    }
-
-    for objeto in solicitudes:
-        print(f"\nUsuario: Por favor, tráeme el {objeto}")
-        ubicacion = ubicaciones.get(objeto)
-        
-        if not ubicacion:
-            print(f"Error: No se conoce la ubicación del objeto {objeto}")
-            print("Robot: Lo siento, no estoy entrenado para buscar ese objeto.")
+        # Simulate semantic parsing by LLM
+        if "knife" in user_input:
+            obj = "knife"
+            origin = "living room"
+            destination = "kitchen"
+        elif "cold" in user_input:
+            obj = "blanket"
+            origin = "closet"
+            destination = "user"
+        elif "pen" in user_input:
+            obj = "pen"
+            origin = "desk"
+            destination = "Juan"
+        else:
+            print("[Node_LLM] Could not interpret the command correctly")
             continue
 
-        print(f"Navegación: yendo a la {ubicacion} para buscar el {objeto}")
-        encontrados = objetos_disponibles.get(ubicacion, [])
-        print(f"Escaneo en {ubicacion}: objetos vistos = {encontrados}")
-        
-        if objeto in encontrados:
-            print(f"Objeto encontrado: {objeto}")
-            print("Brazo robótico: recogiendo el objeto...")
-            print("Navegación: regresando con el operador...")
-            print(f"Entrega: {objeto} entregado correctamente")
-            print(f"Robot: Aquí tienes el {objeto}")
+        print(f"[Node_LLM] Object: {obj}, Origin: {origin}, Destination: {destination}")
+        print(f"[Node_path_planning] Navigating to {origin}")
+        print(f"[Node_object_detection] Searching for {obj}")
+        print(f"[Node_armcontrol] Picking up {obj}")
+        print(f"[Node_path_planning] Taking {obj} to {destination}")
+        print(f"[Node_armcontrol] Delivering {obj} to {destination}")
+
+    print("[LOG] ✅ Task completed: General Purpose Service Robot")
+
+
+def Receptionist():
+    guests = []
+    gathered_interests = []
+
+    # --- GUEST 1 ---
+    print("[Node_object_detection] Guest detected at the entrance")
+    print("[Node_armcontrol] Opening the door for the guest")
+    print("[Node_TTS] Welcome, what is your name?")
+    name1 = "Guest_1"
+    print(f"[Node_STT] Detected name: {name1}")
+
+    print("[Node_TTS] Would you please join me at the drink table?")
+    print("[Node_path_planning] Guiding the guest to the drink table")
+    print("[Node_Head] Looking in the navigation direction")
+
+    print("[Node_TTS] While we walk, tell me something you like: a movie, book, or series?")
+    interest1 = "music"
+    print(f"[Node_STT] Detected interest: {interest1}")
+
+    print("[Node_TTS] What’s your favorite drink?")
+    drink1 = "juice"
+    print(f"[Node_STT] Preferred drink: {drink1}")
+    print("[Node_object_detection] Checking drink availability...")
+    print(f"[Node_TTS] Perfect! You may take the {drink1} from the table")
+
+    print("[Node_TTS] Would you like me to take you to the living room?")
+    print("[Node_path_planning] Guiding the guest to the living room")
+    print("[Node_Head] Looking in the navigation direction")
+
+    print("[Node_TTS] This is your seat, please sit down")
+
+    guests.append({"name": name1, "drink": drink1, "interest": interest1})
+    gathered_interests.append(interest1)
+
+    # --- GUEST 2 ---
+    print("[Node_object_detection] Guest detected at the entrance")
+    print("[Node_armcontrol] Opening the door for the guest")
+    print("[Node_TTS] Welcome, what is your name?")
+    name2 = "Guest_2"
+    print(f"[Node_STT] Detected name: {name2}")
+
+    print("[Node_TTS] Would you please join me at the drink table?")
+    print("[Node_path_planning] Guiding the guest to the drink table")
+    print("[Node_Head] Looking in the navigation direction")
+
+    print("[Node_TTS] While we walk, tell me something you like: a movie, book, or series?")
+    interest2 = "music"
+    print(f"[Node_STT] Detected interest: {interest2}")
+
+    print("[Node_TTS] What’s your favorite drink?")
+    drink2 = "juice"
+    print(f"[Node_STT] Preferred drink: {drink2}")
+    print("[Node_object_detection] Checking drink availability...")
+    print(f"[Node_TTS] Perfect! You may take the {drink2} from the table")
+
+    print("[Node_TTS] Would you like me to take you to the living room?")
+    print("[Node_path_planning] Guiding the guest to the living room")
+    print("[Node_Head] Looking in the navigation direction")
+
+    print("[Node_TTS] This is your seat, please sit down")
+
+    guests.append({"name": name2, "drink": drink2, "interest": interest2})
+    gathered_interests.append(interest2)
+
+    print("[Node_TTS] Let me introduce you to each other")
+    print(f"[Node_TTS] {guests[0]['name']} meet {guests[1]['name']}, they like {guests[1]['interest']}")
+    print(f"[Node_TTS] {guests[1]['name']} meet {guests[0]['name']}, they like {guests[0]['interest']}")
+
+    if guests[0]['interest'] == guests[1]['interest']:
+        print(f"[Node_TTS] You both like {guests[0]['interest']}, how interesting!")
+    else:
+        print("[Node_TTS] You have different tastes, but I’m sure you’ll get along.")
+
+    print("[Node_TTS] The first guest has brown hair and wears glasses")
+    print("[Node_Head] Observing the conversation, looking at the speaker")
+    print("[Node_Head] Adjusting orientation if a guest moves")
+
+    print("Task completed: Receptionist\n")
+
+def Storing_Groceries():
+    detected_objects = ["apple", "orange", "cereal_box", "bottle", "banana"]
+    categories = {
+        "fruits": ["apple", "orange", "banana"],
+        "cereals": ["cereal_box"],
+        "liquids": ["bottle"]
+    }
+    shelf_levels = {
+        "fruits": "middle level",
+        "cereals": "top level",
+        "liquids": "bottom level"
+    }
+
+    print("[Node_path_planning] Navigating to the object table...")
+    # 15 pts
+
+    print("[Node_object_detection] Detecting and classifying objects on the table...")
+    for obj in detected_objects:
+        print(f"[Node_Reasoning] Classifying object: {obj}")
+    # 5×15 = 75 pts
+
+    print("[Node_armcontrol] Opening first cabinet door...")
+    # 200 pts
+    print("[Node_armcontrol] Opening second cabinet door...")
+    # 100 pts
+
+    for category, objects in categories.items():
+        for obj in objects:
+            print(f"[Node_armcontrol] Picking up object: {obj} to place in the cabinet")
+            # 5×50 = 250 pts
+            print(f"[Node_object_detection] Inspecting shelf and deciding level for {obj} ({shelf_levels[category]})")
+            # 5×15 = 75 pts
+            print(f"[Node_path_planning] Navigating to cabinet to store {obj}")
+            print(f"[Node_armcontrol] Placing {obj} on the shelf")
+            # 5×15 = 75 pts
+            print(f"[Node_Reasoning] Grouping {obj} with others of category {category}")
+            # 5×50 = 250 pts
+
+    print("[Node_armcontrol] Detecting cereal to pour into container")
+    print("[Node_armcontrol] Pouring cereal into designated container")
+    # 300 pts
+
+    # Bonus examples if detected:
+    print("[Node_armcontrol] Small object detected: awarding 70 pts bonus")
+    print("[Node_armcontrol] Precise placement of small object: 30 pts bonus")
+    print("[Node_armcontrol] Heavy object manipulation: 70 + 30 pts bonus")
+    print("[Node_armcontrol] Fully autonomous pick and place: 50 + 50 pts bonus")
+
+    print("[Node_path_planning] Returning to starting point to report to the referee")
+    print("[Node_TTS] Task successfully completed. All objects have been stored")
+    print("✅ [LOG] Task finished: Storing Groceries")
+
+
+def Clean_the_Table():
+    table_objects = ["fork", "knife", "plate", "glass1", "glass2"]
+    dishwasher_tab = "tablet"
+    cleaning_tool = "sponge"
+
+    print("[Node_path_planning] Navigating to the table to pick up objects...")
+    # 15 pts
+
+    print("[Node_object_detection] Detecting objects on the table...")
+    print(f"[LOG] Detected objects: {table_objects}")
+
+    print("[Node_armcontrol] Opening dishwasher door...")
+    print("[Node_armcontrol] Pulling out dishwasher tray...")
+    # 2×200 + 2×100 pts
+
+    for obj in table_objects:
+        print(f"[Node_armcontrol] Picking up {obj} to transport it")
+        if obj in ["glass1", "glass2"]:
+            print(f"[Node_armcontrol] Placing {obj} in the trash bin")
+            # 2×50 pts
         else:
-            print(f"Error: No encontré el {objeto} en la {ubicacion}")
-            print("Robot: No pude encontrarlo, ¿deseas que intente con otro?")
-    
-    print("\nRobot: ¿Necesitas algo más?")
-    print("Usuario: No, gracias.")
-    print("Tarea completada: Dame una mano finalizado\n")
+            print(f"[Node_TTS] This object is cleanable and should be placed properly")
+            print(f"[Node_armcontrol] Inserting {obj} into the dishwasher")
+            # 5×50 + 5×75 pts
+
+    print(f"[Node_armcontrol] Picking up dishwasher tab: {dishwasher_tab}")
+    print(f"[Node_armcontrol] Placing {dishwasher_tab} in its proper compartment")
+    # 100 + 200 pts
+
+    print(f"[Node_armcontrol] Using {cleaning_tool} to clean drink area")
+    # 2×50 pts
+
+    # Bonus: Autonomous pick and place
+    print("[Node_armcontrol] Object fully handled autonomously (pick + place)")
+    # 50 + 50 pts
+
+    print("[Node_path_planning] Returning to starting point")
+    print("[Node_TTS] Task finished: all objects handled correctly")
+    print("✅ [LOG] Task completed: Clean the Table")
+
+
+def Enhanced_General_Purpose_Service_Robot():
+    # Task: Enhanced General Purpose Service Robot
+    # 3 detected problems x 150 pts = 450 pts
+    # 3 solutions x 650 pts = 1950 pts
+
+    problems = [
+        "The lamp is on with no one in the room",
+        "There is trash on the floor",
+        "The refrigerator is open"
+    ]
+
+    for problem in problems:
+        print(f"[Node_LLM] Detecting problem: {problem}")
+        print("[Node_Reasoning] Generating corrective action")
+        print("[Node_path_planning] Moving toward problem area")
+        print("[Node_armcontrol] Executing corrective action (turn off, pick up, close, etc.)")
+        print("[Node_TTS] Action completed for the problem")
+
+    print("[LOG] ✅ Task completed: Enhanced General Purpose Service Robot")
+
+def Restaurant():
+    client_1 = "table_3"
+    client_order = "orange juice"
+    available_menu = ["soda", "orange juice", "water"]
+    bar_objects = ["orange juice", "apple juice", "soda"]
+
+    # --- CLIENT DETECTION ---
+    # Node_object_detection and Node_STT
+    print("[Node_pose_estimation] Detecting if a client is calling or greeting the robot")
+    print("[Node_TTS] Hello! Would you like to place an order?")
+    # → 2×100 pts
+
+    # --- APPROACH THE TABLE ---
+    print(f"[Node_path_planning] Navigating to client's location: {client_1}")
+    # → 2×100 pts
+
+    # --- TAKE ORDER ---
+    print("[Node_TTS] What would you like to order?")
+    print(f"[Node_STT] Client: '{client_order}'")
+    if client_order not in available_menu:
+        print("[Node_TTS] Sorry, that item is not on the menu.")
+        return
+    print(f"[Node_TTS] Just to confirm, you want '{client_order}'?")
+    print("[Node_STT] Client: Yes")
+    # → 2×200 pts
+
+    # --- INFORM THE BARTENDER ---
+    print("[Node_path_planning] Navigating to the bar")
+    print("[Node_TTS] Bartender, please prepare a(n) " + client_order)
+    # → 2×100 pts
+
+    # --- PICK UP ORDER ---
+    if client_order in bar_objects:
+        print(f"[Node_armcontrol] Using tray to pick up: {client_order}")
+        # → Bonus 2×200 pts (if non-attached tray is used)
+    else:
+        print("[Node_TTS] Item not found, canceling delivery")
+        return
+
+    # --- RETURN TO TABLE ---
+    print(f"[Node_path_planning] Returning to {client_1} with the order...")
+    # → 2×100 pts
+
+    # --- SERVE ORDER ---
+    print("[Node_armcontrol] Serving the order to the client")
+    print("[Node_TTS] Here is your order. Enjoy!")
+    # → 2×200 pts
+
+    print("✅ [LOG] Task finished: Restaurant completed")
+
+
+def Give_Me_a_Hand():
+    # Initial navigation to the operator
+    print("[Node_path_planning] Entering test area and locating operator...")
+    print("[Node_pose_estimation] Operator detected. Approaching to receive instructions.")
+    # → 100 pts
+
+    requests = ["remote control", "book", "glass"]
+    locations = {
+        "remote control": "living room",
+        "book": "bedroom",
+        "glass": "kitchen"
+    }
+    available_objects = {
+        "living room": ["remote control", "pillow"],
+        "bedroom": ["book", "lamp"],
+        "kitchen": ["glass", "plate"]
+    }
+
+    for item in requests:
+        print(f"\n[User] Please take the {item}")
+
+        # Approach the operator’s hand to receive the item
+        print(f"[Node_armcontrol] Approaching operator’s hand without contact to receive: {item}")
+        # → 50 pts
+
+        print(f"[Node_armcontrol] Receiving '{item}' from operator")
+        # → 100 pts
+
+        location = locations.get(item)
+        if not location:
+            print(f"[Node_TTS] Where should I take the {item}?")
+            # → 50 pts (natural interaction to disambiguate)
+            print("[Node_STT] User: Take it to the desk")
+            continue
+
+        print(f"[Node_path_planning] Navigating to the {location}")
+        found = available_objects.get(location, [])
+        print(f"[Node_object_detection] Scanning in {location}... detected objects: {found}")
+
+        if item in found:
+            print(f"[Node_armcontrol] Placing '{item}' in the {location}")
+            # → 100 pts
+        else:
+            print(f"[Node_TTS] I couldn’t find the {item} in the {location}")
+            print("[Node_TTS] Would you like me to try with another object?")
+
+    print("\n[Node_TTS] Do you need anything else?")
+    print("[User] No, thank you.")
+    print("✅ [LOG] Task finished: Give Me a Hand completed")
+
 
 def show_menu():
     print("\n=== MAIN MENU ===")
     print("1. Run Help_me_carry")
-    print("2. Run Help_me_carry_2")
+    print("2. Run General_Purpose_Service_Robot")
     print("3. Run Receptionist")
     print("4. Run Storing_Groceries")
     print("5. Run Clean_the_Table")
@@ -306,6 +389,7 @@ def show_menu():
     print("7. Run Restaurant")
     print("8. Run Give_Me_a_Hand")
     print("0. Exit")
+
 
 def main():
     while True:
@@ -316,7 +400,7 @@ def main():
             case "1":
                 Help_me_carry()
             case "2":
-                Help_me_carry_2()
+                General_Purpose_Service_Robot()
             case "3":
                 Receptionist()
             case "4":
@@ -335,5 +419,11 @@ def main():
             case _:
                 print("❌ Invalid option. Please try again.")
 
+
 if __name__ == "__main__":
     main()
+
+# ⚠️ General guideline:
+# If the robot cannot complete an action:
+# 1. It must use natural language to inform the user of the failure
+# 2. If possible, it should signal (visually or acoustically) to support communication
